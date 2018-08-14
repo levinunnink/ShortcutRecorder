@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name = 'ShortcutRecorder'
   s.homepage = 'https://github.com/Kentzo/ShortcutRecorder'
   s.summary = 'The only user interface control to record shortcuts. For Mac OS X 10.6+, 64bit'
-  s.version = '2.17'
+  s.version = '2.18'
   s.source = { :git => 'git://github.com/Kentzo/ShortcutRecorder.git', :branch => 'master' }
   s.author = { 'Ilya Kulakov' => 'kulakov.ilya@gmail.com' }
   s.frameworks = 'Carbon', 'Cocoa'
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |core|
     core.source_files = 'Library/*.{h,m}'
-    core.resource_bundles = { "ShortcutRecorder" => ['Resources/*.lproj', 'Resources/*.png'] }
+    core.resource_bundles = { "ShortcutRecorder" => ['Resources/*.lproj', 'Resources/*.png', 'Resources/*.xcassets'] }
     core.requires_arc = true
     core.prefix_header_file = 'Library/Prefix.pch'
   end
