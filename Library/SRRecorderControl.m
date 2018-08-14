@@ -479,6 +479,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
     static dispatch_once_t OnceToken;
     static NSDictionary *NormalAttributes = nil;
     dispatch_once(&OnceToken, ^{
+        bool darkMode = [[[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"] isEqualToString:@"Dark"];
         NSMutableParagraphStyle *p = [[NSMutableParagraphStyle alloc] init];
         p.alignment = NSCenterTextAlignment;
         p.lineBreakMode = NSLineBreakByTruncatingTail;
@@ -486,7 +487,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
         NormalAttributes = @{
             NSParagraphStyleAttributeName: [p copy],
             NSFontAttributeName: [NSFont labelFontOfSize:[NSFont systemFontSize]],
-            NSForegroundColorAttributeName: [NSColor controlTextColor]
+            NSForegroundColorAttributeName: darkMode ? [NSColor darkGrayColor] : [NSColor controlTextColor]
         };
     });
     return NormalAttributes;
@@ -497,6 +498,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
     static dispatch_once_t OnceToken;
     static NSDictionary *RecordingAttributes = nil;
     dispatch_once(&OnceToken, ^{
+        bool darkMode = [[[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"] isEqualToString:@"Dark"];
         NSMutableParagraphStyle *p = [[NSMutableParagraphStyle alloc] init];
         p.alignment = NSCenterTextAlignment;
         p.lineBreakMode = NSLineBreakByTruncatingTail;
@@ -504,7 +506,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
         RecordingAttributes = @{
             NSParagraphStyleAttributeName: [p copy],
             NSFontAttributeName: [NSFont labelFontOfSize:[NSFont systemFontSize]],
-            NSForegroundColorAttributeName: [NSColor disabledControlTextColor]
+            NSForegroundColorAttributeName: darkMode ? [NSColor grayColor] : [NSColor disabledControlTextColor]
         };
     });
     return RecordingAttributes;
@@ -515,6 +517,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
     static dispatch_once_t OnceToken;
     static NSDictionary *DisabledAttributes = nil;
     dispatch_once(&OnceToken, ^{
+        bool darkMode = [[[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"] isEqualToString:@"Dark"];
         NSMutableParagraphStyle *p = [[NSMutableParagraphStyle alloc] init];
         p.alignment = NSCenterTextAlignment;
         p.lineBreakMode = NSLineBreakByTruncatingTail;
@@ -522,7 +525,7 @@ typedef NS_ENUM(NSUInteger, _SRRecorderControlButtonTag)
         DisabledAttributes = @{
             NSParagraphStyleAttributeName: [p copy],
             NSFontAttributeName: [NSFont labelFontOfSize:[NSFont systemFontSize]],
-            NSForegroundColorAttributeName: [NSColor disabledControlTextColor]
+            NSForegroundColorAttributeName: darkMode ? [NSColor grayColor] : [NSColor disabledControlTextColor]
         };
     });
     return DisabledAttributes;
